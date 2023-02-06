@@ -1,0 +1,23 @@
+{
+  "name": "nosql-social-media-api",
+  "version": "1.0.0",
+  "description": "An API for a social network web application where users can share their thoughts, react to friends’ thoughts, and create a friend list",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/abbeydoyle/nosql-social-media-api.git"
+  },
+  "author": "Abigail Doyle",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/abbeydoyle/nosql-social-media-api/issues"
+  },
+  "homepage": "https://github.com/abbeydoyle/nosql-social-media-api#readme",
+  "dependencies": {
+    "mongodb": "^5.0.0"
+  }
+}
