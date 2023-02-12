@@ -9,46 +9,23 @@ connection.once('open', async () => {
 
       await User.deleteMany({});
       await Thought.deleteMany({});
-      await Reaction.deleteMany({});
-
-      // const users = [];
-
-      // for (let i = 0; i<10; i++) {
-      //       const thoughts = getRandomThought(2);
-      //       const username = getRandomUsername();
-
-      //       for (let j = 0; j<2; j++) {
-      //             c
-      //       }
-      // }
-
-      // const thoughts = [];
-
-      // for (let i = 0; i < 11; i++) {
-      //       const reactions = getRandomReaction(11);
-      //       const thoughtText = getRandomThought();
-      //       const username = getRandomUsername();
-
-      //       thoughts.push({
-      //             thoughtText,
-      //             username,
-      //             reactions,
-      //       })
-
-      // }
-
-      // await Thought.collection.insertMany(thoughts);
 
       const users  = [];
+      const thoughts = [];
+      const friends = [];
 
-      for (let j = 0; j<9; j++) {
+      for (let j = 0; j<3; j++) {
 
             const username = getRandomUsername();
-            const email = `${getRandomUsername} + '@gmail.com'`;
-            const thoughts = [];
 
-            for (let i = 0; i < 11; i++) {
-                  const reactions = getRandomReaction(11);
+            const getEmail = () => {
+                  return username + "@gmail.com"
+            }
+
+            const email = getEmail();
+
+            for (let i = 0; i < 2; i++) {
+                  const reactions = getRandomReaction(2);
                   const thoughtText = getRandomThought();
                   const username = getRandomUsername();
       
@@ -57,26 +34,41 @@ connection.once('open', async () => {
                         username,
                         reactions,
                   })
+                  console.log(thoughtText, username, reactions)
       
             };
 
+            // FIXME: needs to return id not actual name
             const friends = getRandomUsername(2);
+
+            // let friendArray = db.collection("User").
 
             users.push({
                   username,
                   email,
                   thoughts,
-                  friends,
+                  // friends,
+            })
+            console.log(username, email, thoughts, friends)
+
+            User.collection.insert(users, function(err) {
+                  if (err) return;
+                  var objectId = objectToInsert._id;
+                  friends.push(objectId);
+                  users.push(friends)
             })
       }
 
       await Thought.collection.insertMany(thoughts);
 
-      await User.collection.insertMany(users)
-
+      // await User.collection.insertMany(users)
+      
       console.table(thoughts);
       console.table(users);
       console.info('Seeding complete!');
+
+      // console.log(friends);
+      // console.log(objectId);
       process.exit(0);
 
 })
