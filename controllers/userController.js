@@ -9,8 +9,9 @@ module.exports = {
 
       getSingleUser(req, res) {
             User.findOne({ _id: req.params.userId })
-            .populate("thoughts")
-            .populate("friends")
+            // .populate("thoughts")
+            // .populate("friends")
+            //FIXME: cant populate thoughts or friends
             .select('-__v')
             .then((user) =>
                   !user
