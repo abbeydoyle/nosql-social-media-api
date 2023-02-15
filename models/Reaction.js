@@ -1,3 +1,4 @@
+// dependencies
 const { Schema, model, Types } = require('mongoose');
 
 // not technically a model, only a schema

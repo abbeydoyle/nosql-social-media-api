@@ -1,12 +1,14 @@
 const { User, Thought } = require('../models');
 
 module.exports = {
+      // get all thoughts
       getThoughts(req, res) {
             Thought.find()
             .then((thoughts) => res.json(thoughts))
             .catch((err) => res.status(500).json(err));
       },
 
+      // get single thought by id
       getSingleThought(req, res) {
             Thought.findOne({ _id: req.params.thoughtId })
             .select('-__v')
@@ -16,7 +18,8 @@ module.exports = {
                         : res.json(thought)
             )
       },
-// TODO: recheck this
+
+      // create thought
       createThought(req, res) {
             Thought.create(req.body)
             .then((thought) => res.json(thought))
@@ -26,6 +29,7 @@ module.exports = {
             })
       },
 
+      // delete thought by id
       deleteThought(req, res) {
             Thought.findOneAndRemove({ _id: req.params.thoughtId })
             .then((thought) =>
@@ -50,6 +54,7 @@ module.exports = {
             });
       },
 
+      // update thought by id
       updateThought(req, res) {
             Thought.findOneAndUpdate(
                   { _id: req.params.thoughtId },
@@ -64,6 +69,7 @@ module.exports = {
             .catch((err) => res.status(500).json(err))
       },
 
+      // add reaction with thought id
       addReaction(req, res) {
             console.log('You are adding a reaction');
             console.log(req.body);
@@ -83,6 +89,7 @@ module.exports = {
                   res.status(500).json(err));
       },
 
+      // remove reaction with thought id
       removeReaction(req, res) {
             console.log('You are removing a reaction');
             console.log(req.body);

@@ -45,9 +45,11 @@ const getRandomArrItem = (arr) => arr[Math.floor(Math.random() * arr.length)];
 const getRandomUsername = () =>
       `${getRandomArrItem(usernameSeeds)}`;
 
+// Gets a random thought
 const getRandomThought = () => 
       `${getRandomArrItem(thoughtSeeds)}`;
 
+// Gets a random reaction
 const getRandomReaction = (int) => {
       const results = [];
       for (let i = 0; i < int; i++) {
